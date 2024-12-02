@@ -6,7 +6,18 @@ class Bag(
 ) {
     private var ticket: Ticket? = null
 
-    fun hasInvitation(): Boolean {
+    fun hold(ticket: Ticket): Long {
+        if (hasInvitation()) {
+            setTicket(ticket)
+            return 0L
+        } else {
+            minusAmount(ticket.fee)
+            setTicket(ticket)
+            return ticket.fee
+        }
+    }
+
+    private fun hasInvitation(): Boolean {
         return invitation != null
     }
 
@@ -14,7 +25,7 @@ class Bag(
         return ticket != null
     }
 
-    fun setTicket(newTicket: Ticket) {
+    private fun setTicket(newTicket: Ticket) {
         ticket = newTicket
     }
 
@@ -22,7 +33,7 @@ class Bag(
         amount += increment
     }
 
-    fun minusAmount(decrement: Long) {
+    private fun minusAmount(decrement: Long) {
         amount -= decrement
     }
 }
