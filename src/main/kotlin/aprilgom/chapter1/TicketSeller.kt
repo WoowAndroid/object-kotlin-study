@@ -4,14 +4,9 @@ class TicketSeller(
     private val ticketOffice: TicketOffice
 ) {
     fun sellTo(audience: Audience) {
-        if(audience.bag.hasInvitation()){
-            val ticket = ticketOffice.getTicket()
-            audience.bag.ticket = ticket
-        } else {
-            val ticket = ticketOffice.getTicket()
-            audience.bag.minusAmount(ticket.fee)
-            ticketOffice.plusAmount(ticket.fee)
-            audience.bag.ticket = ticket
-        }
+        //자신의 소지품을 스스로 관리한다.
+        ticketOffice.plusAmount(
+            audience.buy(ticketOffice.getTicket())
+        )
     }
 }
