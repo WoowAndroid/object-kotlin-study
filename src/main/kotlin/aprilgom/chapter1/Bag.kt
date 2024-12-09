@@ -14,6 +14,7 @@ class Bag(
     var ticket: Ticket? = null
     var invitation: Invitation? = null
     fun hasTicket() = ticket != null
+    fun hasInvitation() = invitation != null
     fun plusAmount(amount: Long) {
         this.amount += amount
     }
