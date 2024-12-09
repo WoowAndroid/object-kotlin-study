@@ -6,11 +6,13 @@ class TicketOffice(
 ) {
     private val ticket = ticket.toMutableList()
     fun getTicket() = ticket.removeAt(0)
-    fun minusAmount(amount: Long) {
-        this.amount -= amount
+
+    fun sellTicketTo(audience: Audience) {
+        //나쁜 소식: ticketOffice와 audience 사이의 의존성이 추가되었다.
+        plusAmount(audience.buy(getTicket()))
     }
 
-    fun plusAmount(amount: Long) {
+    private fun plusAmount(amount: Long) {
         this.amount += amount
     }
 }
